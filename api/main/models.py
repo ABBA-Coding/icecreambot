@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser
 from .managers import CustomUserManager
+from ordered_model.models import OrderedModel
 from django.db import models
 
 
@@ -12,7 +13,7 @@ class Category(models.Model):
         return self.name_uz
 
 
-class Product(models.Model):
+class Product(OrderedModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     price = models.IntegerField()
     photo = models.ImageField()
@@ -30,6 +31,8 @@ class Product(models.Model):
     fat = models.FloatField(default=14.4)
     carbohydrate = models.FloatField(default=24.2)
     calories = models.IntegerField(default=1008)
+
+    order_with_respect_to = "category"
 
     def __str__(self):
         return self.name_uz

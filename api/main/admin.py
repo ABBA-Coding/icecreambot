@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
+from ordered_model.admin import OrderedModelAdmin
 
 from .models import Product, Category
 
@@ -23,10 +24,11 @@ class UserAdmin(admin.ModelAdmin):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name_uz", "category", "name_ru", "name_en"]
+class ProductAdmin(OrderedModelAdmin):
+    list_display = ["name_uz", "category", "move_up_down_links", "name_ru", "name_en"]
     readonly_fields = ("photo_uri", "photo_updated")
     list_select_related = ["category"]
+    ordering = ["category"]
 
 
 @admin.register(Category)
