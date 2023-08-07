@@ -25,10 +25,10 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(OrderedModelAdmin):
-    list_display = ["name_uz", "category", "move_up_down_links", "name_ru", "name_en"]
+    list_display = ["name_uz", "category", "move_up_down_links", "name_ru", "name_en", "order"]
     readonly_fields = ("photo_uri", "photo_updated")
     list_select_related = ["category"]
-    ordering = ["category"]
+    ordering = ["order"]
 
 
 @admin.register(Category)
