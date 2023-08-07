@@ -28,7 +28,7 @@ class ProductAdmin(OrderedModelAdmin):
     list_display = ["name_uz", "category", "move_up_down_links", "name_ru", "name_en", "order"]
     readonly_fields = ("photo_uri", "photo_updated")
     list_select_related = ["category"]
-    ordering = ["order", "category"]
+    ordering = ["category", "order"]
 
 
 @admin.register(Category)
